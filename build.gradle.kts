@@ -29,14 +29,14 @@ val test by tasks.getting(Test::class) {
 liquibase {
     activities(
             closureOf<NamedDomainObjectContainer<Activity>> {
-                mapOf(
-                        "main" to closureOf<Activity> {
-                            mapOf(
-                                    "changeLogFile" to "src/main/resources/db/changelog.xml",
-                                    "url" to "jdbc:h2:mem"
-                            )
-                        }
-                )
+                create("main", closureOf<Activity> {
+                    arguments = mapOf(
+                            "driver" to "org.h2.Driver",
+                            "changeLogFile" to "src/main/resources/db/changelog.xml",
+                            "url" to "jdbc:h2:mem:test",
+                            "logLevel" to "debug"
+                    )
+                })
             }
     )
 }

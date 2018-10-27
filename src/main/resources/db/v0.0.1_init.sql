@@ -1,5 +1,5 @@
 
-create table podcast {
-  id INT
+create table podcast (
+  id INT,
   title VARCHAR
-}
+)
